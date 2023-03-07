@@ -22,5 +22,15 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
       - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpwd
       - ME_CONFIG_MONGODB_SERVER=my-mongo
+  api:
+    build: .
+    container_name: my-api
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/desafio
 volumes:
   mongo-data: {}
