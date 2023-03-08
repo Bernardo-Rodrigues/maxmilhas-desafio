@@ -3,6 +3,8 @@ package com.maxmilhas.desafio.api.services.impl;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.CPFValidator;
 import com.maxmilhas.desafio.api.services.CpfValidatorService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 public class CpfValidatorServiceImpl implements CpfValidatorService {
 
     CPFValidator cpfValidator;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CpfValidatorServiceImpl.class);
 
     CpfValidatorServiceImpl(){
         this.cpfValidator = new CPFValidator();
@@ -21,7 +24,7 @@ public class CpfValidatorServiceImpl implements CpfValidatorService {
         List<ValidationMessage> errors = cpfValidator.invalidMessagesFor(cpf);
 
         if(errors.size() > 0){
-            System.out.println(errors);
+            LOGGER.info("Cpf is not valid: " + errors);
             return false;
         }
 
