@@ -15,4 +15,6 @@ public interface CpfMapper {
     List<CpfResponse> dtoListToResponseList(List<CpfDto> dtoList);
     CpfDto entityToDto(Cpf entity);
     CpfResponse dtoToResponse(CpfDto dto);
+
+    Cpf dtoToEntity(CpfDto dto);
 }

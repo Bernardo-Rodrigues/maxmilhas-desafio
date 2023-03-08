@@ -1,6 +1,5 @@
 package com.maxmilhas.desafio.api.integration;
 
-import com.maxmilhas.desafio.api.domain.entities.Cpf;
 import com.maxmilhas.desafio.api.repositories.CpfRepository;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.AfterAll;
@@ -14,6 +13,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -52,15 +52,29 @@ public class CpfIntegrationTest implements WithAssertions {
 
     @Test
     void givenARequestToVerifyIfACpfIsRegisteredWhenItIsThenReturnIt() throws Exception {
-        Cpf cpfRegistered = cpfRepository.findAll().get(0);
+        String cpfRegistered = cpfRepository.findAll().get(0).getCpf();
 
         MockHttpServletResponse response = mvc.perform(
-                        get(CPF_CONTROLLER_BASE_URL + "/" + cpfRegistered.getCpf())
+                        get(CPF_CONTROLLER_BASE_URL + "/" + cpfRegistered)
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
-        assertThat(response.getContentAsString()).contains(cpfRegistered.getCpf());
+        assertThat(response.getContentAsString()).contains(cpfRegistered);
+    }
+
+    @Test
+    void givenARequestToDeleteACpfWhenTheParamIsValidAndItIsRegisteredThenDeleteIt() throws Exception {
+        String cpfRegistered = cpfRepository.findAll().get(0).getCpf();
+
+        mvc.perform(
+                    delete(CPF_CONTROLLER_BASE_URL + "/" + cpfRegistered)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(status().isNoContent())
+            .andReturn().getResponse();
+
+        assertThat(cpfRepository.findCpfByCpf(cpfRegistered).isPresent()).isFalse();
     }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface CpfService {
     List<CpfDto> list();
     CpfDto get(String cpf);
+    void delete(String cpf);
 }
