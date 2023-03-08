@@ -13,4 +13,6 @@ import static org.mapstruct.ReportingPolicy.IGNORE;
 public interface CpfMapper {
     List<CpfDto> entityListToDtoList(List<Cpf> entityList);
     List<CpfResponse> dtoListToResponseList(List<CpfDto> dtoList);
+    CpfDto entityToDto(Cpf entity);
+    CpfResponse dtoToResponse(CpfDto dto);
 }

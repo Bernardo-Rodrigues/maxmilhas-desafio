@@ -1,5 +1,6 @@
 package com.maxmilhas.desafio.api.integration;
 
+import com.maxmilhas.desafio.api.domain.entities.Cpf;
 import com.maxmilhas.desafio.api.repositories.CpfRepository;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.AfterAll;
@@ -47,5 +48,19 @@ public class CpfIntegrationTest implements WithAssertions {
         Integer itemsSaved = cpfRepository.findAll().size();
 
         assertThat(responseLength).isEqualTo(itemsSaved);
+    }
+
+    @Test
+    void givenARequestToVerifyIfACpfIsRegisteredWhenItIsThenReturnIt() throws Exception {
+        Cpf cpfRegistered = cpfRepository.findAll().get(0);
+
+        MockHttpServletResponse response = mvc.perform(
+                        get(CPF_CONTROLLER_BASE_URL + "/" + cpfRegistered.getCpf())
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+
+        assertThat(response.getContentAsString()).contains(cpfRegistered.getCpf());
     }
 }
