@@ -39,19 +39,19 @@ Atualmente o time de análise antifraude do ecommerce realiza um controle de CPF
 
 As seguintes ferramentas e frameworks foram usados na construção do projeto:<br>
 
-  ![JAVA 17](https://img.shields.io/badge/JAVA-17-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-  ![SPRING BOOT 3](https://img.shields.io/badge/SPRING-BOOT-3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-  ![MAVEN](https://img.shields.io/badge/MAVEN-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-  ![LOMBOK](https://img.shields.io/badge/LOMBOK-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-  ![JUNIT](https://img.shields.io/badge/JUNIT-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-  ![MOCKITO](https://img.shields.io/badge/MOCKITO-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
-  ![ASSERTJ](https://img.shields.io/badge/ASSERTJ-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-  ![MAPSCTRUCT](https://img.shields.io/badge/MAPSCTRUCT-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-  ![OPENAPI](https://img.shields.io/badge/OPENAPI-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-  ![STELLA](https://img.shields.io/badge/STELLA-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-  ![MONGODB](https://img.shields.io/badge/MONGODB-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
-  ![MONGOEXPRESS](https://img.shields.io/badge/MONGOEXPRESS-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
-  ![SLF4J](https://img.shields.io/badge/SLF4J-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+  ![JAVA 17](https://img.shields.io/badge/JAVA-17-%23E34F26.svg?style=for-the-badge&logo=java&logoColor=white)
+  ![SPRING BOOT 3](https://img.shields.io/badge/SPRING-BOOT-3-%231572B6.svg?style=for-the-badge&logo=maven&logoColor=white)
+  ![MAVEN](https://img.shields.io/badge/MAVEN-%23323330.svg?style=for-the-badge&logo=springboot&logoColor=%23F7DF1E)
+  ![LOMBOK](https://img.shields.io/badge/LOMBOK-%2320232a.svg?style=for-the-badge&logo=lombok&logoColor=%2361DAFB)
+  ![JUNIT](https://img.shields.io/badge/JUNIT-CA4245?style=for-the-badge&logo=junit&logoColor=white)
+  ![MOCKITO](https://img.shields.io/badge/MOCKITO-DB7093?style=for-the-badge&logo=mockito&logoColor=white)
+  ![ASSERTJ](https://img.shields.io/badge/ASSERTJ-6DA55F?style=for-the-badge&logo=assertj&logoColor=white)
+  ![MAPSCTRUCT](https://img.shields.io/badge/MAPSCTRUCT-%23404d59.svg?style=for-the-badge&logo=mapstruct&logoColor=%2361DAFB)
+  ![OPENAPI](https://img.shields.io/badge/OPENAPI-%23316192.svg?style=for-the-badge&logo=openapi&logoColor=white)
+  ![STELLA](https://img.shields.io/badge/STELLA-%23007ACC.svg?style=for-the-badge)
+  ![MONGODB](https://img.shields.io/badge/MONGODB-3982CE?style=for-the-badge&logo=mongodb&logoColor=white)
+  ![MONGOEXPRESS](https://img.shields.io/badge/MONGOEXPRESS-%23C21325?style=for-the-badge&logo=mongoexpress&logoColor=white)
+  ![SLF4J](https://img.shields.io/badge/SLF4J-%23E5E5E5?style=for-the-badge&logo=slf4j&logoColor=058a5e)
   ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
   
 ## Por quê?
