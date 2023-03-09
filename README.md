@@ -40,7 +40,7 @@ Atualmente o time de análise antifraude do ecommerce realiza um controle de CPF
 As seguintes ferramentas e frameworks foram usados na construção do projeto:<br>
 
   ![JAVA 17](https://img.shields.io/badge/JAVA-17-%23E34F26.svg?style=for-the-badge)
-  ![SPRING BOOT 3](https://img.shields.io/badge/SPRING-BOOT-3-%231572B6.svg?style=for-the-badge)
+  ![SPRINGBOOT 3](https://img.shields.io/badge/SPRINGBOOT-3-%231572B6.svg?style=for-the-badge)
   ![MAVEN](https://img.shields.io/badge/MAVEN-%23323330.svg?style=for-the-badge)
   ![LOMBOK](https://img.shields.io/badge/LOMBOK-%2320232a.svg?style=for-the-badge)
   ![JUNIT](https://img.shields.io/badge/JUNIT-CA4245?style=for-the-badge)
