@@ -47,8 +47,8 @@ public class CpfController {
     public ResponseEntity create (@RequestBody CpfRequest body){
         CpfDto dto = service.create(mapper.requestToDto(body));
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(dto.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{cpf}")
+                .buildAndExpand(dto.getCpf()).toUri();
 
         return ResponseEntity.created(uri).build();
     }

@@ -64,6 +64,7 @@ public class CpfServiceImpl implements CpfService {
 
     @Override
     public CpfDto create(CpfDto dto) {
+        dto.getCpf().replaceAll("[.-]", "");
         LOGGER.info("Trying to save cpf {" + dto.getCpf() + "}");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
