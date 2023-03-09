@@ -10,26 +10,30 @@ Atualmente o time de análise antifraude do ecommerce realiza um controle de CPF
 
 - GET - /cpf
   - Descrição: Retorna a lista de CPFs da lista restrita
-  - Respostas: 200 OK - Content: [ { "cpf": "64852893055", createdAt: "2019-12-17T22:22:08.547Z"} ]
+  - Respostas: 
+      - 200 OK - Content: [ { "cpf": "64852893055", createdAt: "2019-12-17T22:22:08.547Z"} ]
   
 - GET - /cpf/{cpf}
   - Descrição: Verificar se um determinado CPF está na lista restrita
-  - Respostas: 200 OK - Content: { "cpf": "64852893055", createdAt: "2019-12-17T22:22:08.547Z"}
-               400 BAD REQUEST - Content: { "type": "InvalidCpfException", "message": "CPF is not valid."}
-               404 NOT FOUND - Content: { "type": "NotFoundCpfException", "message": "CPF was not found"}
+  - Respostas: 
+      - 200 OK - Content: { "cpf": "64852893055", createdAt: "2019-12-17T22:22:08.547Z"}
+      - 400 BAD REQUEST - Content: { "type": "InvalidCpfException", "message": "CPF is not valid."}
+      - 404 NOT FOUND - Content: { "type": "NotFoundCpfException", "message": "CPF was not found"}
                
 - POST - /cpf
   - Descrição: Adicionar CPF na lista restrita
   - Parâmetros: { "cpf": "64852893055" }
-  - Respostas: 201 CREATED 
-               400 BAD REQUEST - Content: { "type": "InvalidCpfException", "message": "CPF is not valid."}
-               409 CONFLICT - Content: { "type": "ExistsCpfException", "message": "CPF already exists."}
+  - Respostas: 
+      - 201 CREATED 
+      - 400 BAD REQUEST - Content: { "type": "InvalidCpfException", "message": "CPF is not valid."}
+      - 409 CONFLICT - Content: { "type": "ExistsCpfException", "message": "CPF already exists."}
                
 - DELETE - /cpf/{cpf}
   - Descrição: Remover um CPF da lista restrita
-  - Respostas: 204 NO CONTENT
-               400 BAD REQUEST - Content: { "type": "InvalidCpfException", "message": "CPF is not valid."}
-               404 NOT FOUND - Content: { "type": "NotFoundCpfException", "message": "CPF was not found"}
+  - Respostas: 
+      - 204 NO CONTENT
+      - 400 BAD REQUEST - Content: { "type": "InvalidCpfException", "message": "CPF is not valid."}
+      - 404 NOT FOUND - Content: { "type": "NotFoundCpfException", "message": "CPF was not found"}
 
 ## Tecnologias
 
