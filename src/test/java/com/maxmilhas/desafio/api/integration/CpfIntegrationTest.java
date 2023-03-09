@@ -1,5 +1,8 @@
 package com.maxmilhas.desafio.api.integration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.maxmilhas.desafio.api.domain.request.CpfRequest;
+import com.maxmilhas.desafio.api.mother.CpfMother;
 import com.maxmilhas.desafio.api.repositories.CpfRepository;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.AfterAll;
@@ -13,8 +16,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -76,5 +78,20 @@ public class CpfIntegrationTest implements WithAssertions {
             .andReturn().getResponse();
 
         assertThat(cpfRepository.findCpfByCpf(cpfRegistered).isPresent()).isFalse();
+    }
+
+    @Test
+    void givenARequestToCreateACpfWhenTheCpfIsValidAndItIsNotAlreadyRegisteredRegisteredThenCreateIt() throws Exception {
+        CpfRequest cpfRequest = CpfMother.getCpfRequest();
+
+        mvc.perform(
+                    post(CPF_CONTROLLER_BASE_URL)
+                            .content(new ObjectMapper().writeValueAsString(cpfRequest).getBytes())
+                            .accept(MediaType.APPLICATION_JSON)
+                            .contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(status().isCreated())
+            .andReturn().getResponse();
+
+        assertThat(cpfRepository.findCpfByCpf(cpfRequest.getCpf()).isPresent()).isTrue();
     }
 }

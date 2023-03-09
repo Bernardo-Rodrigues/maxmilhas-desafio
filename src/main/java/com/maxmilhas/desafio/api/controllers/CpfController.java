@@ -2,12 +2,15 @@ package com.maxmilhas.desafio.api.controllers;
 
 import com.maxmilhas.desafio.api.domain.dto.CpfDto;
 import com.maxmilhas.desafio.api.domain.mapper.CpfMapper;
+import com.maxmilhas.desafio.api.domain.request.CpfRequest;
 import com.maxmilhas.desafio.api.domain.response.CpfResponse;
 import com.maxmilhas.desafio.api.services.CpfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -38,5 +41,15 @@ public class CpfController {
         service.delete(cpf);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping
+    public ResponseEntity create (@RequestBody CpfRequest body){
+        CpfDto dto = service.create(mapper.requestToDto(body));
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(dto.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }

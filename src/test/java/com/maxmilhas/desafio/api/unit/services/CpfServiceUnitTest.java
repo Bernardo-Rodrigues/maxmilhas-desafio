@@ -1,9 +1,11 @@
 package com.maxmilhas.desafio.api.unit.services;
 
 import com.maxmilhas.desafio.api.domain.dto.CpfDto;
+import com.maxmilhas.desafio.api.domain.exception.ExistsCpfException;
 import com.maxmilhas.desafio.api.domain.exception.InvalidCpfException;
 import com.maxmilhas.desafio.api.domain.exception.NotFoundCpfException;
 import com.maxmilhas.desafio.api.domain.mapper.CpfMapper;
+import com.maxmilhas.desafio.api.mother.CpfMother;
 import com.maxmilhas.desafio.api.repositories.CpfRepository;
 import com.maxmilhas.desafio.api.services.CpfValidatorService;
 import com.maxmilhas.desafio.api.services.impl.CpfServiceImpl;
@@ -24,7 +26,8 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith({MockitoExtension.class})
 public class CpfServiceUnitTest implements WithAssertions {
 
-    private static final String CPF_EXAMPLE = "42305544006";
+    private static final CpfDto CPF_DTO_EXAMPLE = CpfMother.getCpfDto();
+    private static final String CPF_EXAMPLE = CPF_DTO_EXAMPLE.getCpf();
 
     @InjectMocks
     private CpfServiceImpl cpfService;
@@ -53,10 +56,25 @@ public class CpfServiceUnitTest implements WithAssertions {
     }
 
     @Test
-    void givenAGetCpfAttemptWhenThereAreNoCpfRegisteredThenThrowANotFoundCpfException(){
+    void givenAGetCpfAttemptWhenThereIsNoCpfRegisteredThenThrowANotFoundCpfException(){
         given(cpfValidatorService.isValid(CPF_EXAMPLE)).willReturn(true);
         given(repository.findCpfByCpf(CPF_EXAMPLE)).willReturn(Optional.empty());
 
         assertThatThrownBy(() -> cpfService.get(CPF_EXAMPLE)).isInstanceOf(NotFoundCpfException.class);
+    }
+
+    @Test
+    void givenACreateCpfAttemptWhenTheCpfRequestedIsInvalidThenThrowAInvalidCpfException(){
+        given(cpfValidatorService.isValid(CPF_EXAMPLE)).willReturn(false);
+
+        assertThatThrownBy(() -> cpfService.create(CPF_DTO_EXAMPLE)).isInstanceOf(InvalidCpfException.class);
+    }
+
+    @Test
+    void givenACreateCpfAttemptWhenTheCpfAlreadyExistsThenThrowExistsCpfException(){
+        given(cpfValidatorService.isValid(CPF_EXAMPLE)).willReturn(true);
+        given(repository.findCpfByCpf(CPF_EXAMPLE)).willReturn(Optional.of(CpfMother.getCpf()));
+
+        assertThatThrownBy(() -> cpfService.create(CPF_DTO_EXAMPLE)).isInstanceOf(ExistsCpfException.class);
     }
 }

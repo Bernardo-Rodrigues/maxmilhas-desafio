@@ -9,4 +9,5 @@ public interface CpfService {
     List<CpfDto> list();
     CpfDto get(String cpf);
     void delete(String cpf);
+    CpfDto create(CpfDto dto);
 }

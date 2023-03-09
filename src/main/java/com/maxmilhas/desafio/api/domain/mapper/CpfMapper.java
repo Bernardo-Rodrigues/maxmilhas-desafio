@@ -2,6 +2,7 @@ package com.maxmilhas.desafio.api.domain.mapper;
 
 import com.maxmilhas.desafio.api.domain.dto.CpfDto;
 import com.maxmilhas.desafio.api.domain.entities.Cpf;
+import com.maxmilhas.desafio.api.domain.request.CpfRequest;
 import com.maxmilhas.desafio.api.domain.response.CpfResponse;
 import org.mapstruct.Mapper;
 
@@ -15,6 +16,7 @@ public interface CpfMapper {
     List<CpfResponse> dtoListToResponseList(List<CpfDto> dtoList);
     CpfDto entityToDto(Cpf entity);
     CpfResponse dtoToResponse(CpfDto dto);
-
     Cpf dtoToEntity(CpfDto dto);
+
+    CpfDto requestToDto(CpfRequest request);
 }

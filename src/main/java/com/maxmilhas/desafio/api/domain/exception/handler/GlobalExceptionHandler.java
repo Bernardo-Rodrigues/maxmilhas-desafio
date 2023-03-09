@@ -1,5 +1,6 @@
 package com.maxmilhas.desafio.api.domain.exception.handler;
 
+import com.maxmilhas.desafio.api.domain.exception.ExistsCpfException;
 import com.maxmilhas.desafio.api.domain.exception.InvalidCpfException;
 import com.maxmilhas.desafio.api.domain.exception.NotFoundCpfException;
 import com.maxmilhas.desafio.api.domain.exception.StandardError;
@@ -26,6 +27,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundCpfException.class)
     public ResponseEntity<StandardError> notFoundCpf(NotFoundCpfException e) {
+        StandardError err = StandardError.builder()
+                .type(e.getClass().getSimpleName())
+                .message(e.getMessage())
+                .build();
+        LOGGER.error(e.getMessage());
+        return ResponseEntity.status(e.getStatus()).body(err);
+    }
+
+    @ExceptionHandler(ExistsCpfException.class)
+    public ResponseEntity<StandardError> existsCpf(ExistsCpfException e) {
         StandardError err = StandardError.builder()
                 .type(e.getClass().getSimpleName())
                 .message(e.getMessage())
